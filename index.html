@@ -32,7 +32,7 @@
                 <img src="img/logo.png" alt="Westford Pillars Logo" class="logo">
 
                 <nav>
-                    <ul class="nav-links">
+                    <ul class="nav-links" id="navLinks">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#mission">Mission</a></li>
                         <li> <a href="#info">Info</a></li>
@@ -40,6 +40,11 @@
                         <li><a href="#academics">Academics</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
+                    <div class="hamburger" id="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -248,6 +253,8 @@
         </div>
     </footer>
 
+    <button onclick="scrollToTop()" id="topBtn" title="Go to top">↑</button>
+
     <script src="script.js"></script>
     <script>
         const sections = document.querySelectorAll('.animate-section');
@@ -262,6 +269,36 @@
 
         sections.forEach(section => {
             observer.observe(section);
+        });
+
+        // Back to top
+
+        // get button
+        let topBtn = document.getElementById("topBtn");
+
+        // show button when scrolling
+        window.onscroll = function () {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                topBtn.style.display = "block";
+            } else {
+                topBtn.style.display = "none";
+            }
+        };
+
+        // scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("navLinks");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
         });
     </script>
 
