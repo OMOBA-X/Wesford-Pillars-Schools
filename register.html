@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Open+Sans:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <title>Register Now</title>
+</head>
+
+<body>
+
+    <form class="form" action="register.php" method="POST" enctype="multipart/form-data">
+
+        <div class="bio-data">
+            <label>Bio-Data</label><br><br>
+
+            <div class="first-two">
+                <input type="text" name="first_name" placeholder="First name*" required>
+                <input type="text" name="middle_name" placeholder="Middle name*" required><br><br>
+            </div>
+
+            <input type="text" name="last_name" placeholder="Last name*" required><br><br>
+            <input type="date" name="dob" required><br><br>
+
+            <div class="file-upload-container">
+                <input class="file" type="file" name="passport" required>
+            </div>
+        </div>
+
+        <img class="logo" src="img/logo.png" alt="School Logo">
+
+        <div class="class-section">
+            <select name="class" required>
+                <option value="">Select Class</option>
+                <option>KG1</option>
+                <option>KG2</option>
+                <option>Primary 1</option>
+                <option>Primary 2</option>
+                <option>Primary 3</option>
+                <option>Primary 4</option>
+                <option>Primary 5</option>
+                <option>Primary 6</option>
+                <option>Junior School 1</option>
+                <option>Junior School 2</option>
+                <option>Junior School 3</option>
+                <option>Senior School 1</option>
+                <option>Senior School 2</option>
+                <option>Senior School 3</option>
+            </select>
+
+            <select name="department" required>
+                <option value="">Select Department</option>
+                <option>Sciences</option>
+                <option>Humanities</option>
+                <option>Business</option>
+            </select>
+        </div>
+
+        <div class="parent-info">
+            <label>Parents/Guardian Information</label><br><br>
+
+            <input type="text" name="parent_first_name" placeholder="First name*" required><br><br>
+            <input type="text" name="parent_last_name" placeholder="Last name*" required><br><br>
+
+            <input type="text" name="city" placeholder="City*" required><br><br>
+            <input type="text" name="lga" placeholder="LGA*" required><br><br>
+
+            <input type="tel" name="phone" placeholder="Phone number*" pattern="^(\+234|0)[789][01]\d{8}$" required>
+        </div>
+
+        <div class="optional-info"><br>
+            <label>Additional Information (Optional)</label><br>
+            <input type="email" name="email" placeholder="Email">
+
+            <div class="btn-container">
+                <button type="submit" class="btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="end-note">
+        <p class="copyright">
+            © 2026 Westford Pillars School. All rights reserved.
+        </p>
+    </div>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>
