@@ -12,7 +12,7 @@
 
 <body>
 
-    <form class="form" action="register.php" method="POST" enctype="multipart/form-data">
+    <form class="form" id="registerForm" action="register.php" method="POST" enctype="multipart/form-data">
 
         <div class="bio-data">
             <label>Bio-Data</label><br><br>
@@ -26,7 +26,14 @@
             <input type="date" name="dob" required><br><br>
 
             <div class="file-upload-container">
-                <input class="file" type="file" name="passport" required>
+                <label>Upload Passport Photo*</label><br><br>
+                <input class="file" type="file" name="passport" id="passportInput" accept="image/*" required>
+
+                <!-- Passport preview -->
+                <div id="preview-container" style="margin-top: 3px;">
+                    <img id="passportPreview" src="" alt="Passport Preview"
+                        style="display:none; width:340px; height:280px; object-fit:cover; border:1px solid #ccc; border-radius:5px;">
+                </div>
             </div>
         </div>
 
@@ -81,51 +88,105 @@
         </div>
 
     </form>
-
+<!-- 
     <div class="end-note">
         <p class="copyright">
             © 2026 Westford Pillars School. All rights reserved.
-        </p>
+        </p> -->
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Code injected by live-server -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#registerForm").validate({
+
+                rules: {
+                    first_name: { required: true, minlength: 2 },
+                    middle_name: { required: true, minlength: 2 },
+                    last_name: { required: true, minlength: 2 },
+                    dob: { required: true },
+
+                    class: { required: true },
+                    department: { required: true },
+
+                    parent_first_name: { required: true, minlength: 2 },
+                    parent_last_name: { required: true, minlength: 2 },
+
+                    city: { required: true },
+                    lga: { required: true },
+
+                    phone: {
+                        required: true,
+                        digits: true,
+                        minlength: 11,
+                        maxlength: 14
+                    },
+
+                    email: { email: true }
+                },
+
+                messages: {
+                    first_name: "Enter first name",
+                    middle_name: "Enter middle name",
+                    last_name: "Enter last name",
+                    dob: "Select date of birth",
+                    class: "Select class",
+                    department: "Select department",
+                    parent_first_name: "Enter parent's first name",
+                    parent_last_name: "Enter parent's last name",
+                    city: "Enter city",
+                    lga: "Enter LGA",
+                    phone: "Enter valid phone number",
+                    email: "Enter a valid email"
+                },
+
+                submitHandler: function (form) {
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registration Submitted!",
+                        text: "Student registration successful.",
+                        confirmButtonColor: "#2b7a78"
+                    }).then(() => {
+                        form.submit();
+                    });
+
+                }
+
+            });
+
+        });
+
+        // Passport Preview Section 
+        const passportInput = document.getElementById('passportInput');
+        const passportPreview = document.getElementById('passportPreview');
+
+        passportInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    passportPreview.src = e.target.result;
+                    passportPreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                passportPreview.src = '';
+                passportPreview.style.display = 'none';
+            }
+        });
+    </script>
+    </script>
 </body>
 
 </html>

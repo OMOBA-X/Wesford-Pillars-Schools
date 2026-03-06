@@ -149,6 +149,18 @@ select {
     z-index: -1;
 }
 
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+}
+
+input.error,
+select.error {
+    border: 1px solid red;
+}
+
 
 /* <===== MOBILE RESPINSIVENESS ========> */
 @media (max-width: 768px) {
@@ -265,7 +277,7 @@ select {
         color: var(--dark);
         position: absolute;
         bottom: -130%;
-        color:red;
+        color: red;
         text-align: center;
         display: flex;
         justify-content: center;
