@@ -30,9 +30,7 @@
                 <input class="file" type="file" name="passport" id="passportInput" accept="image/*" required>
 
                 <!-- Passport preview -->
-                <div id="preview-container" style="margin-top: 3px;">
-                    <img id="passportPreview" src="" alt="Passport Preview"
-                        style="display:none; width:340px; height:280px; object-fit:cover; border:1px solid #ccc; border-radius:5px;">
+                <div id="preview-container" style="margin-top: 10px;">
                 </div>
             </div>
         </div>
@@ -88,22 +86,15 @@
         </div>
 
     </form>
-<!-- 
-    <div class="end-note">
-        <p class="copyright">
-            © 2026 Westford Pillars School. All rights reserved.
-        </p> -->
+
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Code injected by live-server -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
 
         $(document).ready(function () {
@@ -166,8 +157,7 @@
             });
 
         });
-
-        // Passport Preview Section 
+        // Passport Preview Section
         const passportInput = document.getElementById('passportInput');
         const passportPreview = document.getElementById('passportPreview');
 
